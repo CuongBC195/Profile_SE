@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Award, Heart, Code2, Lightbulb } from 'lucide-react'
+import Image from 'next/image'
 
 export default function About() {
   const fadeInUp = {
@@ -79,6 +80,60 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
+              {/* Avatar Section */}
+              <motion.div
+                variants={fadeInUp}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                className="flex flex-col items-center text-center lg:text-left lg:flex-row lg:items-start gap-8"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="relative"
+                >
+                  <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20">
+                    <Image
+                      src="/avatar.jpg"
+                      alt="Bui Chi Cuong - Business Analyst"
+                      width={224}
+                      height={224}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 5px' }}
+                      priority
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg">
+                    <Code2 size={24} className="text-white" />
+                  </div>
+                </motion.div>
+                
+                <div className="flex-1 space-y-4">
+                  <div>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-2">
+                      Bui Chi Cuong
+                    </h1>
+                    <p className="text-xl text-primary font-semibold mb-4">
+                      Business Analyst (IT) & Backend Developer
+                    </p>
+                    <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        Requirements Analysis
+                      </span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        Java Development
+                      </span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        ASP.NET
+                      </span>
+                      <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                        Business Documentation
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Introduction */}
               <motion.div
                 variants={fadeInUp}
