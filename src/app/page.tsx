@@ -66,7 +66,7 @@ export default function Home() {
             <motion.div variants={fadeInUp}>
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 <span className="block">Hello, I'm</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-600 to-gray-800">
+                <span className="text-gray-800 dark:text-gray-100">
                   Bui Chi Cuong
                 </span>
               </h1>

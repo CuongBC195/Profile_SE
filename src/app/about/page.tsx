@@ -110,7 +110,7 @@ export default function About() {
                 
                 <div className="flex-1 space-y-4">
                   <div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-2">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-2 text-foreground dark:text-white">
                       Bui Chi Cuong
                     </h1>
                     <p className="text-xl text-primary font-semibold mb-4">
