@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Award, Heart, Code2, Lightbulb } from 'lucide-react'
+import { Calendar, MapPin, Award, Heart, Code2, Lightbulb, Settings, Target, BookOpen, Puzzle } from 'lucide-react'
 import Image from 'next/image'
 
 export default function About() {
@@ -13,44 +13,39 @@ export default function About() {
 
   const experiences = [
     {
-      title: "Business Analyst",
+      title: "Business Analyst / Backend Developer",
       company: "Health Management System - HMS",
-      period: "May 2025 - Sep 2025",
-      description: "Directed the development team, set project vision, and established detailed roadmaps and milestones. Prepared comprehensive documentation (BRD, SRS) and defined business flows, user journeys, and system logic.",
-      technologies: ["ASP.NET", "Business Analysis", "API Development", "System Integration"]
-    },
-    {
-      title: "Business Analyst",
-      company: "Mom and Baby - MAB",
-      period: "Sep 2024 - Dec 2024",
-      description: "Drove the planning and ideation for a multi-store e-commerce platform targeting the mom-and-baby retail sector. Defined product workflows, customer journeys, and store management logic.",
-      technologies: ["Java Jakarta Servlet", "E-commerce", "UI/UX Design", "Product Management"]
+      period: "May 2025 - Aug 2025",
+      description: "Led requirements gathering sessions with stakeholders for a healthcare platform designed for personal health monitoring. Created comprehensive SRS documentation, designed 15+ core system workflows, and developed backend APIs using ASP.NET to ensure technical solutions aligned with business needs.",
+      technologies: ["ASP.NET", "API Development", "SRS Documentation", "Healthcare Systems"]
     },
     {
       title: "Business Analyst Intern",
       company: "UTA Solution",
-      period: "Jun 2024 - Aug 2024",
-      description: "Conducted customer research and gathered requirements to support early-stage project planning and solution design. Collaborated with stakeholders to understand business objectives.",
-      technologies: ["Requirements Analysis", "Stakeholder Management", "Agile", "Documentation"]
+      period: "May 2024 - Oct 2024",
+      description: "Analyzed client requirements and existing business processes to identify system improvements. Authored comprehensive BRDs, User Stories, and Use Cases. Created wireframes and mockups in Figma, designed UML diagrams, and acted as liaison between stakeholders and technical teams.",
+      technologies: ["BRD", "User Stories", "Figma", "UML Diagrams", "Requirements Analysis"]
     },
     {
       title: "Business Analyst",
       company: "Find Jobs 3Do - FJ3Do",
-      period: "Jun 2024 - May 2024",
-      description: "Planned and defined the structure of a recruitment platform connecting job seekers and employers. Designed system workflows, user journeys, and data models.",
-      technologies: ["Java Jakarta Servlet", "System Design", "User Experience", "Platform Architecture"]
+      period: "May 2024 - Jun 2024",
+      description: "Conducted stakeholder interviews with recruiters for an HR Tech platform. Designed end-to-end business logic and data models for job posting, candidate management, and application tracking. Created user flows and collaborated with development team on technical specifications.",
+      technologies: ["HR Tech", "Data Modeling", "User Flows", "Stakeholder Management"]
     }
   ]
 
   const achievements = [
-    "📋 Expert in requirements analysis and business documentation (BRD, SRS, Use Case, User Flow)",
-    "� Strong in bridging communication between clients, development teams, and stakeholders",
-    "🛠️ Proficient in business analysis tools: Postman, Figma, Balsamiq, Canva, Draw.io, Lucidchart",
-    "� Backend development experience with Java and ASP.NET API Development",
-    "🎯 Skilled in creating process models and system logic diagrams",
-    "🚀 Experience in e-commerce and recruitment platform development",
+    "📋 Expert in Requirement Management: Gathering, Elicitation, and Documentation (BRD, SRS, User Stories)",
+    "🔄 Proficient in Process Analysis & Design: BPMN, Flowcharts, Swimlane Diagrams, Gap Analysis",
+    "🎯 Skilled in Solution Design: Use Case Writing, Acceptance Criteria, Data Modeling (ERD)",
+    "📊 Experience with Prioritization Techniques: MOSCOW, Value vs. Effort Matrix",
+    "🎨 Advanced Prototyping & Visualization: Wireframing, Mockups (Figma, Balsamiq)",
+    "💻 Technical Skills: ASP.NET API Development, SQL Server, MySQL, Postman, Git",
+    "📈 Strong communication skills bridging business stakeholders and technical teams",
+    "🌐 Upper-Intermediate English (Academic Preparatory Level 6 - Summit 2)",
     "🏗️ Strong foundation in software engineering principles and project management",
-    "� Certified in Project Management Principles and Practices, User Experience Research and Design"
+    "📜 Certified in Project Management Principles, User Experience Research and Design"
   ]
 
   return (
@@ -110,24 +105,24 @@ export default function About() {
                 
                 <div className="flex-1 space-y-4">
                   <div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-2 text-foreground dark:text-white">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-2 text-white">
                       Bui Chi Cuong
                     </h1>
                     <p className="text-xl text-primary font-semibold mb-4">
-                      Business Analyst (IT) & Backend Developer
+                      Business Analyst & Backend Developer
                     </p>
                     <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Requirements Analysis
+                        Requirement Management
                       </span>
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Java Development
+                        ASP.NET Development
                       </span>
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        ASP.NET
+                        Process Analysis
                       </span>
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Business Documentation
+                        Solution Design
                       </span>
                     </div>
                   </div>
@@ -144,22 +139,22 @@ export default function About() {
               >
                 <h2 className="text-3xl font-bold mb-6 text-gradient">My Journey</h2>
                 <p className="text-muted-foreground leading-relaxed text-justify">
-                  Hello! I'm Bui Chi Cuong, a Business Analyst (IT) with a solid IT background, 
-                  skilled in requirements analysis, business documentation (BRD, SRS, Use Case, User Flow), 
-                  and bridging communication between clients, development teams, and stakeholders. 
-                  Currently pursuing my Bachelor of Information Technology at FPT University Campus Can Tho.
+                  Hello! I'm Bui Chi Cuong, a proactive and detail-oriented Business Analyst with a strong 
+                  Software Engineering background. I'm passionate about bridging business strategy and technology 
+                  in dynamic international startup environments. Currently completing my Bachelor of Information 
+                  Technology (Software Engineering .NET) at FPT University Campus Can Tho with a GPA of 7.9.
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-justify">
-                  Throughout my career journey, I've had the privilege of working on diverse projects 
-                  from healthcare management systems to e-commerce platforms and recruitment solutions. 
-                  This experience has taught me the importance of not just understanding technical 
-                  requirements, but also translating business needs into actionable development plans.
+                  I specialize in analyzing complex business processes, translating business needs into technical 
+                  solutions, and creating comprehensive documentation including BRDs, SRS, User Stories, and Use Cases. 
+                  My technical background in ASP.NET API development and backend systems allows me to effectively 
+                  communicate with both business stakeholders and development teams.
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-justify">
-                  I believe in continuous learning and staying up-to-date with the latest 
-                  business analysis methodologies and development technologies. My technical skills 
-                  in Java and ASP.NET complement my analytical abilities, allowing me to better 
-                  communicate with development teams and ensure project success.
+                  With experience across healthcare, HR tech, and recruitment platforms, I bring a systematic 
+                  and solution-oriented mindset to optimize processes and drive growth. I'm eager to apply my 
+                  skills in requirement management, process analysis, and solution design to help organizations 
+                  achieve their strategic objectives through effective technology implementation.
                 </p>
               </motion.div>
 
@@ -225,11 +220,11 @@ export default function About() {
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Location</span>
-                    <span>Can Tho City, Vietnam</span>
+                    <span>Phong Dien, Can Tho City</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Experience</span>
-                    <span>1 year+</span>
+                    <span>1+ years</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Focus</span>
@@ -237,7 +232,7 @@ export default function About() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Education</span>
-                    <span>Bachelor IT (2021-2025)</span>
+                    <span>Bachelor IT - GPA 7.9</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Availability</span>
@@ -288,10 +283,10 @@ export default function About() {
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Code2, label: "Coding" },
-                    { icon: Lightbulb, label: "Innovation" },
-                    { icon: Award, label: "Learning" },
-                    { icon: Heart, label: "Open Source" },
+                    { icon: Settings, label: "Process Optimization" },
+                    { icon: Target, label: "Business Innovation" },
+                    { icon: BookOpen, label: "Continuous Learning" },
+                    { icon: Puzzle, label: "Problem Solving" },
                   ].map((interest, index) => (
                     <motion.div
                       key={interest.label}

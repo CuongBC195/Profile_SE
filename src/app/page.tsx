@@ -20,12 +20,12 @@ export default function Home() {
   }
 
   const skills = [
-    { name: 'Java', icon: Code, level: 88 },
-    { name: 'ASP.NET', icon: Server, level: 85 },
-    { name: 'Business Analysis', icon: Database, level: 90 },
-    { name: 'API Testing', icon: Code, level: 85 },
-    { name: 'Figma', icon: Code, level: 80 },
-    { name: 'Draw.io', icon: Database, level: 82 },
+    { name: 'Requirement Management', icon: Database, level: 92 },
+    { name: 'ASP.NET API Development', icon: Server, level: 88 },
+    { name: 'Process Analysis & Design', icon: Code, level: 90 },
+    { name: 'Solution Design', icon: Code, level: 87 },
+    { name: 'Figma & Prototyping', icon: Code, level: 85 },
+    { name: 'SQL & Database', icon: Database, level: 80 },
   ]
 
   return (
@@ -66,7 +66,7 @@ export default function Home() {
             <motion.div variants={fadeInUp}>
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 <span className="block">Hello, I'm</span>
-                <span className="text-gray-800 dark:text-gray-100">
+                <span className="text-gray-100">
                   Bui Chi Cuong
                 </span>
               </h1>
@@ -74,16 +74,17 @@ export default function Home() {
 
             <motion.div variants={fadeInUp}>
               <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
-                Business Analyst (IT) & Backend Developer
+                Business Analyst & Backend Developer
               </p>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
               <p className="text-lg md:text-xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed text-justify">
-                Business Analyst with a solid IT background, skilled in requirements analysis, 
-                business documentation and bridging communication between clients, development teams, 
-                and stakeholders. Experienced in Java, ASP.NET API development, and proficient in 
-                tools like Draw.io, Figma to support product development.
+                A proactive and detail-oriented Business Analyst with a strong Software Engineering background, 
+                passionate about bridging business strategy and technology in dynamic international startup environments. 
+                Experienced in analyzing complex business processes, translating business needs into technical solutions, 
+                and creating thorough documentation (BRDs, User Stories). Eager to apply a systematic and solution-oriented 
+                mindset to optimize processes and drive growth.
               </p>
             </motion.div>
 
