@@ -4,17 +4,20 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, Calendar, Star, GitBranch } from 'lucide-react'
 import Link from 'next/link'
+import { useLanguage } from '@/components/language-provider'
 
 export default function Projects() {
+  const { dict } = useLanguage()
+  
   const projects = [
     {
       id: 1,
       title: "Health Management System (HMS)",
-      description: "Comprehensive healthcare management system with patient management, appointment scheduling, and medical records. Led development team and established detailed roadmaps and milestones.",
+      description: dict.projectsPage.hms.description,
       image: "/api/placeholder/600/400",
       technologies: ["ASP.NET", "API Development", "System Integration", "Healthcare"],
-      category: "Business Analysis",
-      status: "Completed",
+      category: dict.projectsPage.categories.businessAnalysis,
+      status: dict.projectsPage.status.completed,
       date: "2025-05",
       github: "#",
       demo: "https://drive.google.com/drive/folders/1UqghZoeAkJJVve4epWOXtrhpxjD6IyXw?usp=drive_link",
@@ -28,11 +31,11 @@ export default function Projects() {
     {
       id: 2,
       title: "Mom and Baby E-commerce Platform (MAB)",
-      description: "Multi-store e-commerce platform targeting the mom-and-baby retail sector. Researched user behaviors and market trends to enhance customer experience and boost engagement.",
+      description: dict.projectsPage.mab.description,
       image: "/api/placeholder/600/400",
       technologies: ["Java Jakarta Servlet", "E-commerce", "UI/UX Design", "Market Research"],
-      category: "Business Analysis",
-      status: "Completed",
+      category: dict.projectsPage.categories.businessAnalysis,
+      status: dict.projectsPage.status.completed,
       date: "2024-09",
       github: "#",
       demo: "https://drive.google.com/drive/folders/1NhwHYROQCG1931IIwczhnyMU0rje01Gy?usp=drive_link",
@@ -46,11 +49,11 @@ export default function Projects() {
     {
       id: 3,
       title: "Find Jobs 3Do Recruitment Platform (FJ3Do)",
-      description: "Recruitment platform connecting job seekers and employers. Designed system workflows, user journeys, and data models to ensure smooth interaction between both sides.",
+      description: dict.projectsPage.fj3do.description,
       image: "/api/placeholder/600/400",
       technologies: ["Java Jakarta Servlet", "System Design", "User Experience", "Platform Architecture"],
-      category: "Business Analysis",
-      status: "Completed",
+      category: dict.projectsPage.categories.businessAnalysis,
+      status: dict.projectsPage.status.completed,
       date: "2024-06",
       github: "#",
       demo: "https://drive.google.com/drive/folders/1f2_IqbdBIkalpLwUGT-NBjBHbSPbFM0W?usp=drive_link",
@@ -63,11 +66,16 @@ export default function Projects() {
     }
   ]
 
-  const categories = ['All', 'Business Analysis', 'System Design', 'Requirements Analysis']
-  const [selectedCategory, setSelectedCategory] = useState('All')
+  const categories = [
+    dict.projectsPage.categories.all,
+    dict.projectsPage.categories.businessAnalysis,
+    dict.projectsPage.categories.systemDesign,
+    dict.projectsPage.categories.requirementsAnalysis
+  ]
+  const [selectedCategory, setSelectedCategory] = useState(dict.projectsPage.categories.all)
 
   const filteredProjects = projects.filter(project => 
-    selectedCategory === 'All' || project.category === selectedCategory
+    selectedCategory === dict.projectsPage.categories.all || project.category === selectedCategory
   )
 
   const featuredProjects = projects.filter(project => project.featured)
@@ -84,17 +92,17 @@ export default function Projects() {
             className="text-center text-white"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              My Projects
+              {dict.projectsPage.title}
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200">
-              A showcase of my latest work and contributions to the developer community
+              {dict.projectsPage.subtitle}
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-background">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -104,10 +112,10 @@ export default function Projects() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-              Featured Projects
+              {dict.projectsPage.featured.title}
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Highlighting some of my most impactful and innovative projects
+              {dict.projectsPage.featured.subtitle}
             </p>
           </motion.div>
 
@@ -120,22 +128,22 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="glass-effect rounded-lg overflow-hidden group"
+                className="glass-effect rounded-lg overflow-hidden group flex flex-col h-full"
               >
                 {/* Project Image */}
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden flex-shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-600/20 to-gray-800/20" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-8xl opacity-20">💻</div>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-green-500 text-white text-xs rounded-full">
+                    <span className="px-3 py-1 bg-green-500/20 text-green-400 border border-green-500/30 backdrop-blur-md text-xs rounded-full">
                       {project.status}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">
                       {project.title}
@@ -155,7 +163,7 @@ export default function Projects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                        className="px-3 py-1 bg-white/5 text-zinc-300 border border-white/10 backdrop-blur-md rounded-full text-sm"
                       >
                         {tech}
                       </span>
@@ -179,17 +187,17 @@ export default function Projects() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 mt-auto">
                     <motion.a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-lg hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
                     >
                       <ExternalLink size={16} />
-                      <span>Live Demo</span>
+                      <span>{dict.projectsPage.buttons.liveDemo}</span>
                     </motion.a>
                     <motion.a
                       href={project.github}
@@ -197,10 +205,10 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 border border-border rounded-lg hover:bg-accent transition-colors"
+                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded-lg hover:bg-white/5 hover:border-white/30 transition-all duration-300"
                     >
                       <Github size={16} />
-                      <span>GitHub</span>
+                      <span>{dict.projectsPage.buttons.code}</span>
                     </motion.a>
                   </div>
                 </div>
@@ -211,7 +219,7 @@ export default function Projects() {
       </section>
 
       {/* All Projects */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -221,10 +229,10 @@ export default function Projects() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold mb-6 text-gradient">
-              All Projects
+              {dict.projectsPage.allProjects.title}
             </h2>
             <p className="text-xl text-muted-foreground">
-              Explore my complete portfolio of work
+              {dict.projectsPage.allProjects.subtitle}
             </p>
           </motion.div>
 
@@ -242,10 +250,10 @@ export default function Projects() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 border ${
                   selectedCategory === category
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-card hover:bg-accent text-card-foreground'
+                    ? 'bg-white/10 text-white border-white/20 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)]'
+                    : 'bg-transparent text-zinc-400 border-transparent hover:text-white hover:bg-white/5'
                 }`}
               >
                 {category}
@@ -262,28 +270,28 @@ export default function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="glass-effect rounded-lg overflow-hidden group"
+                className="glass-effect rounded-lg overflow-hidden group flex flex-col h-full"
               >
                 {/* Project Image */}
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden flex-shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-600/20 to-gray-800/20" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-6xl opacity-20">⚡</div>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      project.status === 'Completed' 
-                        ? 'bg-green-500 text-white' 
-                        : 'bg-yellow-500 text-black'
+                    <span className={`px-2 py-1 text-xs rounded-full backdrop-blur-md border ${
+                      project.status === dict.projectsPage.status.completed 
+                        ? 'bg-green-500/20 text-green-400 border-green-500/30' 
+                        : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
                     }`}>
                       {project.status}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded">
+                    <span className="px-2 py-1 bg-white/5 text-zinc-300 border border-white/10 backdrop-blur-md text-xs rounded">
                       {project.category}
                     </span>
                     <span className="text-xs text-muted-foreground">
@@ -304,30 +312,30 @@ export default function Projects() {
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs"
+                        className="px-2 py-1 bg-white/5 text-zinc-400 border border-white/10 backdrop-blur-md rounded text-xs"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs">
+                      <span className="px-2 py-1 bg-white/5 text-zinc-400 border border-white/10 backdrop-blur-md rounded text-xs">
                         +{project.technologies.length - 3}
                       </span>
                     )}
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-2 mt-auto">
                     <motion.a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90 transition-colors"
+                      className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
                     >
                       <ExternalLink size={14} />
-                      <span>Demo</span>
+                      <span>{dict.projectsPage.buttons.demo}</span>
                     </motion.a>
                     <motion.a
                       href={project.github}
@@ -335,10 +343,10 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 border border-border rounded text-sm hover:bg-accent transition-colors"
+                      className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
                     >
                       <Github size={14} />
-                      <span>Code</span>
+                      <span>{dict.projectsPage.buttons.code}</span>
                     </motion.a>
                   </div>
                 </div>

@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, Face
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useLanguage } from '@/components/language-provider'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -17,6 +18,7 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>
 
 export default function Contact() {
+  const { dict } = useLanguage()
   const [isSubmitted, setIsSubmitted] = useState(false)
   
   const {
@@ -52,7 +54,7 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
+      label: dict.contactPage.form.email,
       value: 'cuongbc.work@gmail.com',
       href: 'mailto:cuongbc.work@gmail.com'
     },
@@ -64,8 +66,8 @@ export default function Contact() {
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'Can Tho City, Vietnam',
+      label: dict.aboutPage.sidebar.location,
+      value: dict.aboutPage.sidebar.locationValue,
       href: 'https://maps.google.com'
     }
   ]
@@ -97,17 +99,17 @@ export default function Contact() {
             className="text-center text-white"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Get In Touch
+              {dict.contactPage.title}
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200">
-              Let's discuss your business analysis needs or collaboration opportunities
+              {dict.contactPage.subtitle}
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
@@ -120,12 +122,10 @@ export default function Contact() {
             >
               <div>
                 <h2 className="text-3xl font-bold mb-6 text-gradient">
-                  Let's Start a Conversation
+                  {dict.contactPage.conversation.title}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed text-justify">
-                  I'm always interested in new opportunities, collaborations, or just a friendly chat about business analysis and technology. 
-                  Whether you have a project in mind, need consultation on requirements analysis, or want to discuss business process optimization, 
-                  I'd love to hear from you.
+                  {dict.contactPage.conversation.description}
                 </p>
               </div>
 
@@ -144,8 +144,8 @@ export default function Contact() {
                     whileHover={{ x: 5 }}
                     className="flex items-center space-x-4 p-4 glass-effect rounded-lg hover:bg-accent/50 transition-colors group"
                   >
-                    <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                      <item.icon size={24} className="text-primary" />
+                    <div className="p-3 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors border border-white/5">
+                      <item.icon size={24} className="text-white" />
                     </div>
                     <div>
                       <p className="font-medium">{item.label}</p>
@@ -157,7 +157,7 @@ export default function Contact() {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-xl font-semibold mb-4">Follow Me</h3>
+                <h3 className="text-xl font-semibold mb-4">{dict.contactPage.info.followMe}</h3>
                 <div className="flex space-x-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -171,7 +171,7 @@ export default function Contact() {
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`p-3 glass-effect rounded-lg hover:bg-accent/50 transition-colors ${social.color}`}
+                      className={`p-3 glass-effect rounded-lg hover:bg-white/10 transition-colors ${social.color}`}
                       aria-label={social.label}
                     >
                       <social.icon size={24} />
@@ -191,11 +191,11 @@ export default function Contact() {
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="font-medium text-green-700 dark:text-green-400">
-                    Available for business analysis projects
+                    {dict.contactPage.info.available}
                   </span>
                 </div>
                 <p className="text-sm text-green-600 dark:text-green-300 mt-1">
-                  Currently accepting new freelance and full-time business analyst opportunities
+                  {dict.contactPage.info.accepting}
                 </p>
               </motion.div>
             </motion.div>
@@ -208,7 +208,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="glass-effect p-8 rounded-lg"
             >
-              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+              <h3 className="text-2xl font-bold mb-6">{dict.contactPage.form.title}</h3>
 
               {/* Success Message */}
               {isSubmitted && (
@@ -219,7 +219,7 @@ export default function Contact() {
                 >
                   <CheckCircle size={20} className="text-green-600 dark:text-green-400" />
                   <span className="text-green-700 dark:text-green-400 font-medium">
-                    Email client opened! Please send the email to complete your message.
+                    {dict.contactPage.form.success}
                   </span>
                 </motion.div>
               )}
@@ -228,14 +228,14 @@ export default function Contact() {
                 {/* Name Field */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name *
+                    {dict.contactPage.form.name} *
                   </label>
                   <input
                     {...register('name')}
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                    placeholder="Your full name"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 text-white placeholder:text-zinc-600 transition-all duration-300 backdrop-blur-sm"
+                    placeholder={dict.contactPage.form.namePlaceholder}
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -245,14 +245,14 @@ export default function Contact() {
                 {/* Email Field */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email *
+                    {dict.contactPage.form.email} *
                   </label>
                   <input
                     {...register('email')}
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                    placeholder="your.email@example.com"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 text-white placeholder:text-zinc-600 transition-all duration-300 backdrop-blur-sm"
+                    placeholder={dict.contactPage.form.emailPlaceholder}
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -262,14 +262,14 @@ export default function Contact() {
                 {/* Subject Field */}
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    Subject *
+                    {dict.contactPage.form.subject} *
                   </label>
                   <input
                     {...register('subject')}
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                    placeholder="Project inquiry, collaboration, etc."
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 text-white placeholder:text-zinc-600 transition-all duration-300 backdrop-blur-sm"
+                    placeholder={dict.contactPage.form.subjectPlaceholder}
                   />
                   {errors.subject && (
                     <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>
@@ -279,14 +279,14 @@ export default function Contact() {
                 {/* Message Field */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message *
+                    {dict.contactPage.form.message} *
                   </label>
                   <textarea
                     {...register('message')}
                     id="message"
                     rows={6}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
-                    placeholder="Tell me about your project, ideas, or just say hello..."
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20 focus:border-white/30 text-white placeholder:text-zinc-600 transition-all duration-300 backdrop-blur-sm resize-none"
+                    placeholder={dict.contactPage.form.messagePlaceholder}
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
@@ -299,24 +299,24 @@ export default function Contact() {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center space-x-2 px-6 py-3 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-lg font-medium hover:bg-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Sending...</span>
+                      <span>{dict.contactPage.form.sending}</span>
                     </>
                   ) : (
                     <>
                       <Send size={18} />
-                      <span>Send Message</span>
+                      <span>{dict.contactPage.form.send}</span>
                     </>
                   )}
                 </motion.button>
               </form>
 
               <p className="text-xs text-muted-foreground mt-4 text-center">
-                By sending this message, you agree that I may contact you about your inquiry.
+                {dict.contactPage.form.disclaimer}
               </p>
             </motion.div>
           </div>
@@ -334,19 +334,19 @@ export default function Contact() {
             className="text-white"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Start Your Business Analysis Project?
+              {dict.contactPage.cta.title}
             </h2>
             <p className="text-xl mb-8 text-gray-200">
-              Let's transform your business requirements into actionable development plans
+              {dict.contactPage.cta.subtitle}
             </p>
             <motion.a
               href="mailto:cuongbc.work@gmail.com"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-lg font-semibold hover:bg-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300"
             >
               <Mail size={20} />
-              <span>Email Me Directly</span>
+              <span>{dict.contactPage.cta.button}</span>
             </motion.a>
           </motion.div>
         </div>
@@ -354,3 +354,4 @@ export default function Contact() {
     </div>
   )
 }
+

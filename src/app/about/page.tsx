@@ -6,8 +6,11 @@ import {
   ClipboardList, GitBranch, BarChart2, Palette, Laptop, TrendingUp, Globe, Layers, Scroll
 } from 'lucide-react'
 import Image from 'next/image'
+import { useLanguage } from '@/components/language-provider'
 
 export default function About() {
+  const { dict } = useLanguage()
+
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
@@ -16,24 +19,24 @@ export default function About() {
 
   const experiences = [
     {
-      title: "Business Analyst / Backend Developer",
+      title: dict.aboutPage.experience.hms.title,
       company: "Health Management System - HMS",
       period: "May 2025 - Aug 2025",
-      description: "Led requirements gathering sessions with stakeholders for a healthcare platform designed for personal health monitoring. Created comprehensive SRS documentation, designed 15+ core system workflows, and developed backend APIs using ASP.NET to ensure technical solutions aligned with business needs.",
+      description: dict.aboutPage.experience.hms.description,
       technologies: ["ASP.NET", "API Development", "SRS Documentation", "Healthcare Systems"]
     },
     {
-      title: "Business Analyst Intern",
+      title: dict.aboutPage.experience.uta.title,
       company: "UTA Solution",
       period: "May 2024 - Oct 2024",
-      description: "Analyzed client requirements and existing business processes to identify system improvements. Authored comprehensive BRDs, User Stories, and Use Cases. Created wireframes and mockups in Figma, designed UML diagrams, and acted as liaison between stakeholders and technical teams.",
+      description: dict.aboutPage.experience.uta.description,
       technologies: ["BRD", "User Stories", "Figma", "UML Diagrams", "Requirements Analysis"]
     },
     {
-      title: "Business Analyst",
+      title: dict.aboutPage.experience.fj3do.title,
       company: "Find Jobs 3Do - FJ3Do",
       period: "May 2024 - Jun 2024",
-      description: "Conducted stakeholder interviews with recruiters for an HR Tech platform. Designed end-to-end business logic and data models for job posting, candidate management, and application tracking. Created user flows and collaborated with development team on technical specifications.",
+      description: dict.aboutPage.experience.fj3do.description,
       technologies: ["HR Tech", "Data Modeling", "User Flows", "Stakeholder Management"]
     }
   ]
@@ -62,17 +65,17 @@ export default function About() {
             className="text-center text-white"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About Me
+              {dict.aboutPage.title}
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200">
-              Business Analyst (IT) bridging technology and business needs in Can Tho City
+              {dict.aboutPage.subtitle}
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-background">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
@@ -111,7 +114,7 @@ export default function About() {
                       Bui Chi Cuong
                     </h1>
                     <p className="text-xl text-primary font-semibold mb-4">
-                      Business Analyst & Backend Developer
+                      {dict.aboutPage.role}
                     </p>
                     <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
@@ -139,24 +142,15 @@ export default function About() {
                 viewport={{ once: true }}
                 className="prose prose-lg dark:prose-invert max-w-none"
               >
-                <h2 className="text-3xl font-bold mb-6 text-gradient">My Journey</h2>
+                <h2 className="text-3xl font-bold mb-6 text-gradient">{dict.aboutPage.journey.title}</h2>
                 <p className="text-muted-foreground leading-relaxed text-justify">
-                  Hello! I'm Bui Chi Cuong, a proactive and detail-oriented Business Analyst with a strong 
-                  Software Engineering background. I'm passionate about bridging business strategy and technology 
-                  in dynamic international startup environments. Currently completing my Bachelor of Information 
-                  Technology (Software Engineering .NET) at FPT University Campus Can Tho with a GPA of 7.9.
+                  {dict.aboutPage.journey.p1}
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-justify">
-                  I specialize in analyzing complex business processes, translating business needs into technical 
-                  solutions, and creating comprehensive documentation including BRDs, SRS, User Stories, and Use Cases. 
-                  My technical background in ASP.NET API development and backend systems allows me to effectively 
-                  communicate with both business stakeholders and development teams.
+                  {dict.aboutPage.journey.p2}
                 </p>
                 <p className="text-muted-foreground leading-relaxed text-justify">
-                  With experience across healthcare, HR tech, and recruitment platforms, I bring a systematic 
-                  and solution-oriented mindset to optimize processes and drive growth. I'm eager to apply my 
-                  skills in requirement management, process analysis, and solution design to help organizations 
-                  achieve their strategic objectives through effective technology implementation.
+                  {dict.aboutPage.journey.p3}
                 </p>
               </motion.div>
 
@@ -167,7 +161,7 @@ export default function About() {
                 whileInView="animate"
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl font-bold mb-8 text-gradient">Experience</h2>
+                <h2 className="text-3xl font-bold mb-8 text-gradient">{dict.aboutPage.experience.title}</h2>
                 <div className="space-y-8">
                   {experiences.map((exp, index) => (
                     <motion.div
@@ -217,28 +211,28 @@ export default function About() {
               >
                 <h3 className="text-xl font-semibold mb-4 flex items-center">
                   <MapPin size={20} className="mr-2 text-primary" />
-                  Quick Info
+                  {dict.aboutPage.sidebar.quickInfo}
                 </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Location</span>
-                    <span>Phong Dien, Can Tho City</span>
+                    <span className="text-muted-foreground">{dict.aboutPage.sidebar.location}</span>
+                    <span>{dict.aboutPage.sidebar.locationValue}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Experience</span>
-                    <span>1+ years</span>
+                    <span className="text-muted-foreground">{dict.aboutPage.sidebar.experience}</span>
+                    <span>{dict.aboutPage.sidebar.experienceValue}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Focus</span>
-                    <span>Business Analysis</span>
+                    <span className="text-muted-foreground">{dict.aboutPage.sidebar.focus}</span>
+                    <span>{dict.aboutPage.sidebar.focusValue}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Education</span>
-                    <span>Bachelor IT - GPA 7.9</span>
+                    <span className="text-muted-foreground">{dict.aboutPage.sidebar.education}</span>
+                    <span>{dict.aboutPage.sidebar.educationValue}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Availability</span>
-                    <span className="text-green-500">Open to work</span>
+                    <span className="text-muted-foreground">{dict.aboutPage.sidebar.availability}</span>
+                    <span className="text-green-500">{dict.aboutPage.sidebar.availabilityValue}</span>
                   </div>
                 </div>
               </motion.div>
@@ -253,7 +247,7 @@ export default function About() {
               >
                 <h3 className="text-xl font-semibold mb-4 flex items-center">
                   <Award size={20} className="mr-2 text-primary" />
-                  Key Achievements
+                  {dict.aboutPage.sidebar.achievements}
                 </h3>
                 <div className="space-y-3">
                   {achievements.map((item, index) => (
@@ -282,14 +276,14 @@ export default function About() {
               >
                 <h3 className="text-xl font-semibold mb-4 flex items-center">
                   <Heart size={20} className="mr-2 text-primary" />
-                  Interests
+                  {dict.aboutPage.sidebar.interests}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Settings, label: "Process Optimization" },
-                    { icon: Target, label: "Business Innovation" },
-                    { icon: BookOpen, label: "Continuous Learning" },
-                    { icon: Puzzle, label: "Problem Solving" },
+                    { icon: Settings, label: dict.aboutPage.sidebar.processOptimization },
+                    { icon: Target, label: dict.aboutPage.sidebar.businessInnovation },
+                    { icon: BookOpen, label: dict.aboutPage.sidebar.continuousLearning },
+                    { icon: Puzzle, label: dict.aboutPage.sidebar.problemSolving },
                   ].map((interest, index) => (
                     <motion.div
                       key={interest.label}
@@ -312,3 +306,4 @@ export default function About() {
     </div>
   )
 }
+

@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navbar } from '@/components/navbar'
+import { LanguageProvider } from '@/components/language-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,17 +27,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased bg-[#030303] text-zinc-400 selection:bg-white selection:text-black`}>
+      <body className={`${inter.className} antialiased bg-black text-zinc-400 selection:bg-white selection:text-black`}>
+        <div className="fixed-bg" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           forcedTheme="dark"
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
+          <LanguageProvider>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

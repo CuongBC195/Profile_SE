@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail, Code, Database, Server, Facebook } from 'lucide-react'
 import Link from 'next/link'
+import { useLanguage } from '@/components/language-provider'
 
 export default function Home() {
+  const { dict } = useLanguage()
+  
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -20,12 +23,12 @@ export default function Home() {
   }
 
   const skills = [
-    { name: 'Requirement Management', icon: Database },
-    { name: 'ASP.NET API Development', icon: Server },
-    { name: 'Process Analysis & Design', icon: Code },
-    { name: 'Solution Design', icon: Code },
-    { name: 'Figma & Prototyping', icon: Code },
-    { name: 'SQL & Database', icon: Database },
+    { name: 'Requirement Management', icon: Database, level: 92 },
+    { name: 'ASP.NET API Development', icon: Server, level: 88 },
+    { name: 'Process Analysis & Design', icon: Code, level: 90 },
+    { name: 'Solution Design', icon: Code, level: 87 },
+    { name: 'Figma & Prototyping', icon: Code, level: 85 },
+    { name: 'SQL & Database', icon: Database, level: 80 },
   ]
 
   return (
@@ -45,7 +48,7 @@ export default function Home() {
           >
             <motion.div variants={fadeInUp}>
               <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter">
-                <span className="block text-white">Hello, I'm</span>
+                <span className="block text-white">{dict.hero.greeting}</span>
                 <span className="text-metallic">
                   Bui Chi Cuong
                 </span>
@@ -54,17 +57,13 @@ export default function Home() {
 
             <motion.div variants={fadeInUp}>
               <p className="text-xl md:text-2xl mb-8 text-zinc-400 max-w-3xl mx-auto font-light">
-                Business Analyst & Backend Developer
+                {dict.hero.role}
               </p>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
               <p className="text-lg md:text-xl mb-12 text-zinc-500 max-w-4xl mx-auto leading-relaxed text-justify font-light">
-                A proactive and detail-oriented Business Analyst with a strong Software Engineering background, 
-                passionate about bridging business strategy and technology in dynamic international startup environments. 
-                Experienced in analyzing complex business processes, translating business needs into technical solutions, 
-                and creating thorough documentation (BRDs, User Stories). Eager to apply a systematic and solution-oriented 
-                mindset to optimize processes and drive growth.
+                {dict.hero.description}
               </p>
             </motion.div>
 
@@ -76,11 +75,11 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link 
+                <Link
                   href="/projects"
-                  className="px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-zinc-200 transition-colors inline-flex items-center space-x-2"
+                  className="px-8 py-4 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-full font-medium hover:bg-white/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 inline-flex items-center space-x-2"
                 >
-                  <span>View Projects</span>
+                  <span>{dict.hero.viewProjects}</span>
                   <Code size={20} />
                 </Link>
               </motion.div>
@@ -89,11 +88,11 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link 
+                <Link
                   href="/contact"
-                  className="px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-colors inline-flex items-center space-x-2"
+                  className="px-8 py-4 bg-transparent text-white border border-white/10 backdrop-blur-md rounded-full font-medium hover:bg-white/5 hover:border-white/30 transition-all duration-300 inline-flex items-center space-x-2"
                 >
-                  <span>Get In Touch</span>
+                  <span>{dict.hero.getInTouch}</span>
                   <Mail size={20} />
                 </Link>
               </motion.div>
@@ -115,7 +114,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-colors border border-white/5"
+                  className="p-3 bg-white/5 backdrop-blur-md rounded-full hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 border border-white/10 hover:border-white/30"
                   aria-label={label}
                 >
                   <Icon size={24} className="text-zinc-400 hover:text-white transition-colors" />
@@ -146,10 +145,10 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white tracking-tight">
-              Technical Skills
+              {dict.skills.title}
             </h2>
             <p className="text-xl text-zinc-500 max-w-2xl mx-auto font-light">
-              Technologies and tools I use to bring ideas to life
+              {dict.skills.subtitle}
             </p>
           </motion.div>
 
@@ -161,13 +160,18 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
-                className="glass-panel p-8 rounded-2xl hover:border-white/20 transition-all group flex items-center space-x-6"
+                whileHover={{ y: -5 }}
+                className="glass-panel p-8 rounded-2xl hover:border-white/20 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]"
               >
-                <div className="p-4 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
-                  <skill.icon size={32} className="text-white group-hover:scale-110 transition-transform duration-300" />
+                <div className="flex flex-col items-center text-center">
+                  <div className="p-4 bg-white/5 rounded-full mb-6 group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 border border-white/5 shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                    <skill.icon size={32} className="text-white" />
+                  </div>
+                  <h3 className="text-lg font-medium text-white mb-3">{skill.name}</h3>
+                  <div className="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-400 group-hover:text-white group-hover:border-white/20 transition-colors">
+                    {skill.level}% {dict.skills.proficiency}
+                  </div>
                 </div>
-                <h3 className="text-lg font-medium text-white tracking-wide">{skill.name}</h3>
               </motion.div>
             ))}
           </div>
@@ -187,18 +191,14 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white tracking-tight">
-                About Me
+                {dict.about.title}
               </h2>
               <div className="space-y-6 text-lg text-zinc-400 font-light leading-relaxed">
                 <p>
-                  I'm a Business Analyst (IT) with a solid technical background and 
-                  1+ year of experience in bridging business requirements with technical solutions. 
-                  I specialize in requirements analysis, business documentation, and stakeholder communication.
+                  {dict.about.p1}
                 </p>
                 <p>
-                  Currently pursuing my Bachelor of Information Technology at FPT University Can Tho, 
-                  I combine academic knowledge with practical experience in Java, ASP.NET development, 
-                  and business analysis tools like Figma, Draw.io, and Postman.
+                  {dict.about.p2}
                 </p>
               </div>
               <motion.div
@@ -206,11 +206,11 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="mt-10"
               >
-                <Link 
+                <Link
                   href="/about"
-                  className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-zinc-200 transition-colors"
+                  className="inline-flex items-center space-x-2 px-8 py-4 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-full font-medium hover:bg-white/20 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300"
                 >
-                  <span>Learn More</span>
+                  <span>{dict.about.learnMore}</span>
                   <ArrowDown size={16} className="rotate-[-90deg]" />
                 </Link>
               </motion.div>
@@ -226,20 +226,20 @@ export default function Home() {
               <div className="glass-panel p-10 rounded-3xl border border-white/10">
                 <div className="space-y-8">
                   <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                    <span className="text-zinc-400">Experience</span>
-                    <span className="text-white font-mono text-xl">1 year+</span>
+                    <span className="text-zinc-400">{dict.about.experience}</span>
+                    <span className="text-white font-mono text-xl">{dict.about.years}</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                    <span className="text-zinc-400">Projects Completed</span>
-                    <span className="text-white font-mono text-xl">8+</span>
+                    <span className="text-zinc-400">{dict.about.projectsCompleted}</span>
+                    <span className="text-white font-mono text-xl">{dict.about.count}</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                    <span className="text-zinc-400">Business Tools</span>
-                    <span className="text-white font-mono text-xl">8+</span>
+                    <span className="text-zinc-400">{dict.about.businessTools}</span>
+                    <span className="text-white font-mono text-xl">{dict.about.count}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-400">Education</span>
-                    <span className="text-white font-mono text-xl">Bachelor IT</span>
+                    <span className="text-zinc-400">{dict.about.education}</span>
+                    <span className="text-white font-mono text-xl">{dict.about.degree}</span>
                   </div>
                 </div>
               </div>
