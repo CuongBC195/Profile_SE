@@ -42,7 +42,6 @@ export default function About() {
     { icon: ClipboardList, text: "Expert in Requirement Management: Gathering, Elicitation, and Documentation (BRD, SRS, User Stories)" },
     { icon: GitBranch, text: "Proficient in Process Analysis & Design: BPMN, Flowcharts, Swimlane Diagrams, Gap Analysis" },
     { icon: Target, text: "Skilled in Solution Design: Use Case Writing, Acceptance Criteria, Data Modeling (ERD)" },
-    { icon: BarChart2, text: "Experience with Prioritization Techniques: MOSCOW, Value vs. Effort Matrix" },
     { icon: Palette, text: "Advanced Prototyping & Visualization: Wireframing, Mockups (Figma, Balsamiq)" },
     { icon: Laptop, text: "Technical Skills: ASP.NET API Development, SQL Server, MySQL, Postman, Git" },
     { icon: TrendingUp, text: "Strong communication skills bridging business stakeholders and technical teams" },
