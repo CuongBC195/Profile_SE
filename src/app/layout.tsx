@@ -18,9 +18,6 @@ export const metadata: Metadata = {
     description: 'Modern portfolio for IT professionals',
     type: 'website',
   },
-  verification: {
-    google: 'QnTYZtQxO2rzbWZ-HQ7hwP3rwUMLqUUGhz5MSi4Guhc',
-  },
 }
 
 export default function RootLayout({
@@ -30,6 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <meta name="google-site-verification" content="QnTYZtQxO2rzbWZ-HQ7hwP3rwUMLqUUGhz5MSi4Guhc" />
+      </head>
       <body className={`${inter.className} antialiased bg-black text-zinc-400 selection:bg-white selection:text-black`}>
         <div className="fixed-bg" />
         <ThemeProvider
