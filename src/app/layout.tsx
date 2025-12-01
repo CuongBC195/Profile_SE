@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     description: 'Modern portfolio for IT professionals',
     type: 'website',
   },
+  verification: {
+    google: 'QnTYZtQxO2rzbWZ-HQ7hwP3rwUMLqUUGhz5MSi4Guhc',
+  },
 }
 
 export default function RootLayout({
