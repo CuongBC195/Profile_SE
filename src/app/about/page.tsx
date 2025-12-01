@@ -1,7 +1,10 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Award, Heart, Code2, Lightbulb, Settings, Target, BookOpen, Puzzle } from 'lucide-react'
+import { 
+  Calendar, MapPin, Award, Heart, Code2, Lightbulb, Settings, Target, BookOpen, Puzzle,
+  ClipboardList, GitBranch, BarChart2, Palette, Laptop, TrendingUp, Globe, Layers, Scroll
+} from 'lucide-react'
 import Image from 'next/image'
 
 export default function About() {
@@ -36,16 +39,16 @@ export default function About() {
   ]
 
   const achievements = [
-    "📋 Expert in Requirement Management: Gathering, Elicitation, and Documentation (BRD, SRS, User Stories)",
-    "🔄 Proficient in Process Analysis & Design: BPMN, Flowcharts, Swimlane Diagrams, Gap Analysis",
-    "🎯 Skilled in Solution Design: Use Case Writing, Acceptance Criteria, Data Modeling (ERD)",
-    "📊 Experience with Prioritization Techniques: MOSCOW, Value vs. Effort Matrix",
-    "🎨 Advanced Prototyping & Visualization: Wireframing, Mockups (Figma, Balsamiq)",
-    "💻 Technical Skills: ASP.NET API Development, SQL Server, MySQL, Postman, Git",
-    "📈 Strong communication skills bridging business stakeholders and technical teams",
-    "🌐 Upper-Intermediate English (Academic Preparatory Level 6 - Summit 2)",
-    "🏗️ Strong foundation in software engineering principles and project management",
-    "📜 Certified in Project Management Principles, User Experience Research and Design"
+    { icon: ClipboardList, text: "Expert in Requirement Management: Gathering, Elicitation, and Documentation (BRD, SRS, User Stories)" },
+    { icon: GitBranch, text: "Proficient in Process Analysis & Design: BPMN, Flowcharts, Swimlane Diagrams, Gap Analysis" },
+    { icon: Target, text: "Skilled in Solution Design: Use Case Writing, Acceptance Criteria, Data Modeling (ERD)" },
+    { icon: BarChart2, text: "Experience with Prioritization Techniques: MOSCOW, Value vs. Effort Matrix" },
+    { icon: Palette, text: "Advanced Prototyping & Visualization: Wireframing, Mockups (Figma, Balsamiq)" },
+    { icon: Laptop, text: "Technical Skills: ASP.NET API Development, SQL Server, MySQL, Postman, Git" },
+    { icon: TrendingUp, text: "Strong communication skills bridging business stakeholders and technical teams" },
+    { icon: Globe, text: "Upper-Intermediate English (Academic Preparatory Level 6 - Summit 2)" },
+    { icon: Layers, text: "Strong foundation in software engineering principles and project management" },
+    { icon: Scroll, text: "Certified in Project Management Principles, User Experience Research and Design" }
   ]
 
   return (
@@ -254,16 +257,17 @@ export default function About() {
                   Key Achievements
                 </h3>
                 <div className="space-y-3">
-                  {achievements.map((achievement, index) => (
+                  {achievements.map((item, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="text-sm text-muted-foreground"
+                      className="flex items-start space-x-3 text-sm text-muted-foreground"
                     >
-                      {achievement}
+                      <item.icon size={18} className="mt-1 text-primary shrink-0" />
+                      <span>{item.text}</span>
                     </motion.div>
                   ))}
                 </div>

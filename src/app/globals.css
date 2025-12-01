@@ -3,68 +3,50 @@
 @tailwind utilities;
 
 :root {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 215 25% 45%;
-  --primary-foreground: 222.2 84% 4.9%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 215 25% 45%;
-  --radius: 0.75rem;
+  --background: 0 0% 1.2%; /* #030303 */
+  --foreground: 240 5% 96%;
 }
 
-* {
-  border-color: hsl(var(--border));
+@layer base {
+  body {
+    @apply bg-[#030303] text-zinc-400 antialiased selection:bg-white selection:text-black;
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 100%);
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-white tracking-tight;
+  }
 }
 
-body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
-  font-feature-settings: "rlig" 1, "calt" 1;
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl;
+  }
+  
+  .text-metallic {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50;
+  }
+  
+  .glow-silver {
+    @apply absolute rounded-full bg-white/5 blur-[100px];
+  }
 }
 
-.gradient-bg {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.dark .gradient-bg {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+::-webkit-scrollbar-track {
+  background: #030303;
 }
 
-.glass-effect {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
 }
 
-.dark .glass-effect {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .text-gradient {
-  background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
 }

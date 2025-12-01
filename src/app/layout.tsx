@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navbar } from '@/components/navbar'
 
@@ -25,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased bg-[#030303] text-zinc-400 selection:bg-white selection:text-black`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

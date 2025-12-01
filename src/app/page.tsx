@@ -20,43 +20,23 @@ export default function Home() {
   }
 
   const skills = [
-    { name: 'Requirement Management', icon: Database, level: 92 },
-    { name: 'ASP.NET API Development', icon: Server, level: 88 },
-    { name: 'Process Analysis & Design', icon: Code, level: 90 },
-    { name: 'Solution Design', icon: Code, level: 87 },
-    { name: 'Figma & Prototyping', icon: Code, level: 85 },
-    { name: 'SQL & Database', icon: Database, level: 80 },
+    { name: 'Requirement Management', icon: Database },
+    { name: 'ASP.NET API Development', icon: Server },
+    { name: 'Process Analysis & Design', icon: Code },
+    { name: 'Solution Design', icon: Code },
+    { name: 'Figma & Prototyping', icon: Code },
+    { name: 'SQL & Database', icon: Database },
   ]
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center gradient-bg overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                x: [0, 100, 0],
-                y: [0, -100, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Ambient Silver Glows */}
+        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px]" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             variants={staggerContainer}
             initial="initial"
@@ -64,22 +44,22 @@ export default function Home() {
             className="space-y-8"
           >
             <motion.div variants={fadeInUp}>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                <span className="block">Hello, I'm</span>
-                <span className="text-gray-100">
+              <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter">
+                <span className="block text-white">Hello, I'm</span>
+                <span className="text-metallic">
                   Bui Chi Cuong
                 </span>
               </h1>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl mb-8 text-zinc-400 max-w-3xl mx-auto font-light">
                 Business Analyst & Backend Developer
               </p>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <p className="text-lg md:text-xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed text-justify">
+              <p className="text-lg md:text-xl mb-12 text-zinc-500 max-w-4xl mx-auto leading-relaxed text-justify font-light">
                 A proactive and detail-oriented Business Analyst with a strong Software Engineering background, 
                 passionate about bridging business strategy and technology in dynamic international startup environments. 
                 Experienced in analyzing complex business processes, translating business needs into technical solutions, 
@@ -98,7 +78,7 @@ export default function Home() {
               >
                 <Link 
                   href="/projects"
-                  className="px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
+                  className="px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-zinc-200 transition-colors inline-flex items-center space-x-2"
                 >
                   <span>View Projects</span>
                   <Code size={20} />
@@ -111,7 +91,7 @@ export default function Home() {
               >
                 <Link 
                   href="/contact"
-                  className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors inline-flex items-center space-x-2"
+                  className="px-8 py-4 border border-white/20 text-white rounded-full font-medium hover:bg-white/5 transition-colors inline-flex items-center space-x-2"
                 >
                   <span>Get In Touch</span>
                   <Mail size={20} />
@@ -135,10 +115,10 @@ export default function Home() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                  className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-colors border border-white/5"
                   aria-label={label}
                 >
-                  <Icon size={24} />
+                  <Icon size={24} className="text-zinc-400 hover:text-white transition-colors" />
                 </motion.a>
               ))}
             </motion.div>
@@ -151,29 +131,29 @@ export default function Home() {
           transition={{ duration: 2, repeat: Infinity }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <ArrowDown size={32} className="text-white/60" />
+          <ArrowDown size={32} className="text-white/20" />
         </motion.div>
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 bg-background">
+      <section className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white tracking-tight">
               Technical Skills
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-justify">
+            <p className="text-xl text-zinc-500 max-w-2xl mx-auto font-light">
               Technologies and tools I use to bring ideas to life
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -181,23 +161,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="glass-effect p-6 rounded-lg"
+                whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.08)" }}
+                className="glass-panel p-8 rounded-2xl hover:border-white/20 transition-all group flex items-center space-x-6"
               >
-                <div className="flex items-center mb-4">
-                  <skill.icon size={24} className="text-primary mr-3" />
-                  <h3 className="text-lg font-semibold">{skill.name}</h3>
+                <div className="p-4 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors">
+                  <skill.icon size={32} className="text-white group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
-                  <motion.div
-                    className="bg-gradient-to-r from-slate-600 to-gray-800 h-2 rounded-full"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground">{skill.level}% Proficiency</p>
+                <h3 className="text-lg font-medium text-white tracking-wide">{skill.name}</h3>
               </motion.div>
             ))}
           </div>
@@ -205,36 +175,40 @@ export default function Home() {
       </section>
 
       {/* About Preview Section */}
-      <section className="py-20 gradient-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute right-0 top-1/2 w-[800px] h-[800px] bg-white/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-white"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white tracking-tight">
                 About Me
               </h2>
-              <p className="text-lg mb-6 text-gray-200 leading-relaxed">
-                I'm a Business Analyst (IT) with a solid technical background and 
-                1+ year of experience in bridging business requirements with technical solutions. 
-                I specialize in requirements analysis, business documentation, and stakeholder communication.
-              </p>
-              <p className="text-lg mb-8 text-gray-200 leading-relaxed">
-                Currently pursuing my Bachelor of Information Technology at FPT University Can Tho, 
-                I combine academic knowledge with practical experience in Java, ASP.NET development, 
-                and business analysis tools like Figma, Draw.io, and Postman.
-              </p>
+              <div className="space-y-6 text-lg text-zinc-400 font-light leading-relaxed">
+                <p>
+                  I'm a Business Analyst (IT) with a solid technical background and 
+                  1+ year of experience in bridging business requirements with technical solutions. 
+                  I specialize in requirements analysis, business documentation, and stakeholder communication.
+                </p>
+                <p>
+                  Currently pursuing my Bachelor of Information Technology at FPT University Can Tho, 
+                  I combine academic knowledge with practical experience in Java, ASP.NET development, 
+                  and business analysis tools like Figma, Draw.io, and Postman.
+                </p>
+              </div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="mt-10"
               >
                 <Link 
                   href="/about"
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                  className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-zinc-200 transition-colors"
                 >
                   <span>Learn More</span>
                   <ArrowDown size={16} className="rotate-[-90deg]" />
@@ -249,23 +223,23 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="glass-effect p-8 rounded-lg">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-white">Experience</span>
-                    <span className="text-slate-300 font-semibold">1 year+</span>
+              <div className="glass-panel p-10 rounded-3xl border border-white/10">
+                <div className="space-y-8">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                    <span className="text-zinc-400">Experience</span>
+                    <span className="text-white font-mono text-xl">1 year+</span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                    <span className="text-zinc-400">Projects Completed</span>
+                    <span className="text-white font-mono text-xl">8+</span>
+                  </div>
+                  <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                    <span className="text-zinc-400">Business Tools</span>
+                    <span className="text-white font-mono text-xl">8+</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-white">Projects Completed</span>
-                    <span className="text-slate-300 font-semibold">8+</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white">Business Tools</span>
-                    <span className="text-slate-300 font-semibold">8+</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white">Education</span>
-                    <span className="text-slate-300 font-semibold">Bachelor IT</span>
+                    <span className="text-zinc-400">Education</span>
+                    <span className="text-white font-mono text-xl">Bachelor IT</span>
                   </div>
                 </div>
               </div>
