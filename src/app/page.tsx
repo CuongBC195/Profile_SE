@@ -164,9 +164,6 @@ export default function Home() {
                     <skill.icon size={32} className="text-white" />
                   </div>
                   <h3 className="text-lg font-medium text-white mb-3">{skill.name}</h3>
-                  <div className="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-400 group-hover:text-white group-hover:border-white/20 transition-colors">
-                    {skill.level}% {dict.skills.proficiency}
-                  </div>
                 </div>
               </motion.div>
             ))}
