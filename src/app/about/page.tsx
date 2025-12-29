@@ -21,36 +21,36 @@ export default function About() {
     {
       title: dict.aboutPage.experience.hms.title,
       company: "Health Management System - HMS",
-      period: "May 2025 - Aug 2025",
+      period: "May 2025 - Sep 2025",
       description: dict.aboutPage.experience.hms.description,
-      technologies: ["ASP.NET", "API Development", "SRS Documentation", "Healthcare Systems"]
+      technologies: ["ASP.NET Web API", "SQL Server", "Redis", "ReactJS", "React Native", "Docker", "GCP", "Gemini API"]
     },
     {
       title: dict.aboutPage.experience.uta.title,
       company: "UTA Solution",
       period: "May 2024 - Oct 2024",
       description: dict.aboutPage.experience.uta.description,
-      technologies: ["BRD", "User Stories", "Figma", "UML Diagrams", "Requirements Analysis"]
+      technologies: ["ASP.NET", "C#", "Web Development", "Database Design", "Code Review"]
     },
     {
       title: dict.aboutPage.experience.fj3do.title,
       company: "Find Jobs 3Do - FJ3Do",
       period: "May 2024 - Jun 2024",
       description: dict.aboutPage.experience.fj3do.description,
-      technologies: ["HR Tech", "Data Modeling", "User Flows", "Stakeholder Management"]
+      technologies: ["Java", "Jakarta Servlet", "Full-Stack", "Database Design", "System Architecture"]
     }
   ]
 
   const achievements = [
-    { icon: ClipboardList, text: "Expert in Requirement Management: Gathering, Elicitation, and Documentation (BRD, SRS, User Stories)" },
-    { icon: GitBranch, text: "Proficient in Process Analysis & Design: BPMN, Flowcharts, Swimlane Diagrams, Gap Analysis" },
-    { icon: Target, text: "Skilled in Solution Design: Use Case Writing, Acceptance Criteria, Data Modeling (ERD)" },
-    { icon: Palette, text: "Advanced Prototyping & Visualization: Wireframing, Mockups (Figma, Balsamiq)" },
-    { icon: Laptop, text: "Technical Skills: ASP.NET API Development, SQL Server, MySQL, Postman, Git" },
-    { icon: TrendingUp, text: "Strong communication skills bridging business stakeholders and technical teams" },
+    { icon: ClipboardList, text: "Expert in .NET 8 & ASP.NET Core Web API: Building scalable RESTful APIs with Entity Framework Core" },
+    { icon: GitBranch, text: "Proficient in Full-Stack Development: Next.js, React, Tailwind CSS for modern web applications" },
+    { icon: Target, text: "Skilled in Database Design & Optimization: PostgreSQL, SQL Server, MySQL schema design and performance tuning" },
+    { icon: Palette, text: "Advanced Frontend Development: React Native for mobile applications, responsive design with Tailwind CSS" },
+    { icon: Laptop, text: "Technical Skills: C#, EF Core, RESTful API Design, Clean Code principles, Git version control" },
+    { icon: TrendingUp, text: "Strong problem-solving skills with logical approach to complex technical challenges" },
     { icon: Globe, text: "Upper-Intermediate English (Academic Preparatory Level 6 - Summit 2)" },
-    { icon: Layers, text: "Strong foundation in software engineering principles and project management" },
-    { icon: Scroll, text: "Certified in Project Management Principles, User Experience Research and Design" }
+    { icon: Layers, text: "Strong foundation in software engineering principles: SOLID, Design Patterns, Code Architecture" },
+    { icon: Scroll, text: "Experience with Docker (Basic), Postman for API testing, and modern development workflows" }
   ]
 
   return (
@@ -95,7 +95,7 @@ export default function About() {
                   <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary/20">
                     <Image
                       src="/avatar.jpg"
-                      alt="Bui Chi Cuong - Business Analyst"
+                      alt="Bui Chi Cuong - Software Engineer"
                       width={224}
                       height={224}
                       className="w-full h-full object-cover"
@@ -118,16 +118,16 @@ export default function About() {
                     </p>
                     <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Requirement Management
+                        .NET 8 & ASP.NET Core
                       </span>
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        ASP.NET Development
+                        Full-Stack Development
                       </span>
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Process Analysis
+                        RESTful API Design
                       </span>
                       <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-                        Solution Design
+                        Database Optimization
                       </span>
                     </div>
                   </div>

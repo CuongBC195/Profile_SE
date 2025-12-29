@@ -1,26 +1,49 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Calendar, Star, GitBranch } from 'lucide-react'
+import { ExternalLink, Github, Calendar, Star, GitBranch, Smartphone } from 'lucide-react'
 import Link from 'next/link'
 import { useLanguage } from '@/components/language-provider'
 
+interface Project {
+  id: number | string
+  title: string
+  description: string
+  image?: string
+  technologies: string[]
+  category: string
+  status: string
+  date: string
+  github: string
+  demo?: string | null
+  appStore?: string
+  featured: boolean
+  stats: {
+    stars: number
+    forks: number
+    commits: number
+  }
+}
+
 export default function Projects() {
   const { dict } = useLanguage()
+  const [githubProjects, setGithubProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
   
-  const projects = [
+  const featuredProjects: Project[] = [
     {
       id: 1,
-      title: "Health Management System (HMS)",
+      title: "Health Management System - HMS",
       description: dict.projectsPage.hms.description,
       image: "/api/placeholder/600/400",
-      technologies: ["ASP.NET", "API Development", "System Integration", "Healthcare"],
-      category: dict.projectsPage.categories.businessAnalysis,
+      technologies: ["ASP.NET Web API", "SQL Server", "Redis", "ReactJS", "React Native", "Docker", "GCP", "Gemini API"],
+      category: dict.projectsPage.categories.systemDesign,
       status: dict.projectsPage.status.completed,
-      date: "2025-05",
-      github: "#",
-      demo: "https://drive.google.com/drive/folders/1UqghZoeAkJJVve4epWOXtrhpxjD6IyXw?usp=drive_link",
+      date: "May 2025 - Sep 2025",
+      github: "https://github.com/CuongBC195/CapstoneProject_HMS.git",
+      demo: "https://hms-client-psi.vercel.app",
+      appStore: "https://apps.apple.com/us/app/hms-3do/id6749509672",
       featured: true,
       stats: {
         stars: 0,
@@ -30,15 +53,15 @@ export default function Projects() {
     },
     {
       id: 2,
-      title: "Mom and Baby E-commerce Platform (MAB)",
+      title: "E-Contract",
       description: dict.projectsPage.mab.description,
       image: "/api/placeholder/600/400",
-      technologies: ["Java Jakarta Servlet", "E-commerce", "UI/UX Design", "Market Research"],
-      category: dict.projectsPage.categories.businessAnalysis,
+      technologies: ["ASP.NET Core 8.0", "PostgreSQL", "EF Core", "Next.js 15", "TypeScript", "Tailwind CSS", "iText7", "PuppeteerSharp"],
+      category: dict.projectsPage.categories.systemDesign,
       status: dict.projectsPage.status.completed,
-      date: "2024-09",
-      github: "#",
-      demo: "https://drive.google.com/drive/folders/1NhwHYROQCG1931IIwczhnyMU0rje01Gy?usp=drive_link",
+      date: "Sep 2025 - Nov 2025",
+      github: "https://github.com/CuongBC195/e-contract.git",
+      demo: "https://hopdongdientu.vercel.app/",
       featured: true,
       stats: {
         stars: 0,
@@ -46,25 +69,49 @@ export default function Projects() {
         commits: 0
       }
     },
-    {
-      id: 3,
-      title: "Find Jobs 3Do Recruitment Platform (FJ3Do)",
-      description: dict.projectsPage.fj3do.description,
-      image: "/api/placeholder/600/400",
-      technologies: ["Java Jakarta Servlet", "System Design", "User Experience", "Platform Architecture"],
-      category: dict.projectsPage.categories.businessAnalysis,
-      status: dict.projectsPage.status.completed,
-      date: "2024-06",
-      github: "#",
-      demo: "https://drive.google.com/drive/folders/1f2_IqbdBIkalpLwUGT-NBjBHbSPbFM0W?usp=drive_link",
-      featured: false,
-      stats: {
-        stars: 0,
-        forks: 0,
-        commits: 0
+  ]
+
+  // Featured project GitHub URLs to exclude from GitHub repos list
+  const featuredGithubUrls = [
+    'https://github.com/CuongBC195/CapstoneProject_HMS.git',
+    'https://github.com/CuongBC195/CapstoneProject_HMS',
+    'https://github.com/CuongBC195/e-contract.git',
+    'https://github.com/CuongBC195/e-contract'
+  ]
+
+  useEffect(() => {
+    const fetchGitHubRepos = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/github')
+        if (response.ok) {
+          const repos = await response.json()
+          // Filter out featured projects and map to project format
+          const filteredRepos = repos
+            .filter((repo: Project) => {
+              const repoUrl = repo.github.toLowerCase()
+              return !featuredGithubUrls.some(url => repoUrl.includes(url.toLowerCase().replace('.git', '')))
+            })
+            .map((repo: Project) => ({
+              ...repo,
+              image: "/api/placeholder/600/400",
+              category: dict.projectsPage.categories.systemDesign,
+              status: dict.projectsPage.status.completed,
+            }))
+          setGithubProjects(filteredRepos)
+        }
+      } catch (error) {
+        console.error('Error fetching GitHub repositories:', error)
+      } finally {
+        setLoading(false)
       }
     }
-  ]
+
+    fetchGitHubRepos()
+  }, [dict.projectsPage.categories.systemDesign, dict.projectsPage.status.completed])
+
+  // Combine featured projects with GitHub projects
+  const allProjects = [...featuredProjects, ...githubProjects]
 
   const categories = [
     dict.projectsPage.categories.all,
@@ -74,11 +121,9 @@ export default function Projects() {
   ]
   const [selectedCategory, setSelectedCategory] = useState(dict.projectsPage.categories.all)
 
-  const filteredProjects = projects.filter(project => 
+  const filteredProjects = allProjects.filter(project => 
     selectedCategory === dict.projectsPage.categories.all || project.category === selectedCategory
   )
-
-  const featuredProjects = projects.filter(project => project.featured)
 
   return (
     <div className="min-h-screen pt-20">
@@ -187,29 +232,46 @@ export default function Projects() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex space-x-4 mt-auto">
-                    <motion.a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-lg hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
-                    >
-                      <ExternalLink size={16} />
-                      <span>{dict.projectsPage.buttons.liveDemo}</span>
-                    </motion.a>
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded-lg hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-                    >
-                      <Github size={16} />
-                      <span>{dict.projectsPage.buttons.code}</span>
-                    </motion.a>
+                  <div className="flex flex-col space-y-2 mt-auto">
+                    <div className="flex space-x-2">
+                      {project.demo && (
+                        <motion.a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded-lg hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
+                        >
+                          <ExternalLink size={16} />
+                          <span>{dict.projectsPage.buttons.liveDemo}</span>
+                        </motion.a>
+                      )}
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`flex items-center justify-center space-x-2 px-4 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded-lg hover:bg-white/5 hover:border-white/30 transition-all duration-300 ${project.demo ? 'flex-1' : 'w-full'}`}
+                      >
+                        <Github size={16} />
+                        <span>{dict.projectsPage.buttons.code}</span>
+                      </motion.a>
+                    </div>
+                    {project.appStore && (
+                      <motion.a
+                        href={project.appStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-blue-500/20 text-blue-300 border border-blue-500/30 backdrop-blur-md rounded-lg hover:bg-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300"
+                      >
+                        <Smartphone size={16} />
+                        <span>App Store</span>
+                      </motion.a>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -262,8 +324,14 @@ export default function Projects() {
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+              <p className="mt-4 text-muted-foreground">Loading projects from GitHub...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -325,34 +393,50 @@ export default function Projects() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex space-x-2 mt-auto">
-                    <motion.a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
-                    >
-                      <ExternalLink size={14} />
-                      <span>{dict.projectsPage.buttons.demo}</span>
-                    </motion.a>
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-                    >
-                      <Github size={14} />
-                      <span>{dict.projectsPage.buttons.code}</span>
-                    </motion.a>
+                  <div className="flex flex-col space-y-2 mt-auto">
+                    <div className="flex space-x-2">
+                      <motion.a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
+                      >
+                        <ExternalLink size={14} />
+                        <span>{dict.projectsPage.buttons.demo}</span>
+                      </motion.a>
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                      >
+                        <Github size={14} />
+                        <span>{dict.projectsPage.buttons.code}</span>
+                      </motion.a>
+                    </div>
+                    {project.appStore && (
+                      <motion.a
+                        href={project.appStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="w-full flex items-center justify-center space-x-1 px-3 py-2 bg-blue-500/20 text-blue-300 border border-blue-500/30 backdrop-blur-md rounded text-sm hover:bg-blue-500/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all duration-300"
+                      >
+                        <Smartphone size={14} />
+                        <span>App Store</span>
+                      </motion.a>
+                    )}
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

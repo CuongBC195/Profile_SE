@@ -23,12 +23,12 @@ export default function Home() {
   }
 
   const skills = [
-    { name: 'Requirement Management', icon: Database, level: 92 },
-    { name: 'ASP.NET API Development', icon: Server, level: 88 },
-    { name: 'Process Analysis & Design', icon: Code, level: 90 },
-    { name: 'Solution Design', icon: Code, level: 87 },
-    { name: 'Figma & Prototyping', icon: Code, level: 85 },
-    { name: 'SQL & Database', icon: Database, level: 80 },
+    { name: '.NET 8 & ASP.NET Core', icon: Server, level: 92 },
+    { name: 'RESTful API Design', icon: Code, level: 90 },
+    { name: 'Next.js & React', icon: Code, level: 88 },
+    { name: 'Database Design & Optimization', icon: Database, level: 87 },
+    { name: 'Entity Framework Core', icon: Database, level: 85 },
+    { name: 'Clean Code & Best Practices', icon: Code, level: 90 },
   ]
 
   return (
