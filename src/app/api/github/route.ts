@@ -40,7 +40,7 @@ export async function GET() {
         title: repo.name.replace(/-/g, ' ').replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
         description: repo.description || 'No description available',
         github: repo.html_url,
-        demo: repo.homepage || null,
+        demo: repo.homepage || undefined,
         date: new Date(repo.updated_at).toLocaleDateString('en-US', { 
           year: 'numeric', 
           month: 'short' 

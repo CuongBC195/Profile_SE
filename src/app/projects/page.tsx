@@ -16,7 +16,7 @@ interface Project {
   status: string
   date: string
   github: string
-  demo?: string | null
+  demo?: string
   appStore?: string
   featured: boolean
   stats: {
@@ -395,24 +395,26 @@ export default function Projects() {
                   {/* Action Buttons */}
                   <div className="flex flex-col space-y-2 mt-auto">
                     <div className="flex space-x-2">
-                      <motion.a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
-                      >
-                        <ExternalLink size={14} />
-                        <span>{dict.projectsPage.buttons.demo}</span>
-                      </motion.a>
+                      {project.demo && (
+                        <motion.a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-white/10 text-white border border-white/20 backdrop-blur-md rounded text-sm hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300"
+                        >
+                          <ExternalLink size={14} />
+                          <span>{dict.projectsPage.buttons.demo}</span>
+                        </motion.a>
+                      )}
                       <motion.a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                        className={`flex items-center justify-center space-x-1 px-3 py-2 bg-transparent text-white border border-white/10 backdrop-blur-md rounded text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300 ${project.demo ? 'flex-1' : 'w-full'}`}
                       >
                         <Github size={14} />
                         <span>{dict.projectsPage.buttons.code}</span>
